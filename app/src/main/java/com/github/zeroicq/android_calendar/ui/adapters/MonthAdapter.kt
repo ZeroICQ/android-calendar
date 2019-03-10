@@ -1,6 +1,5 @@
 package com.github.zeroicq.android_calendar.ui.adapters
 
-import android.content.Context
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,11 +9,12 @@ import com.github.zeroicq.android_calendar.databinding.MonthLayoutBinding
 import com.github.zeroicq.android_calendar.ui.custom.SpanGridLayoutManager
 
 
-class MonthAdapter(ctxt: Context) : RecyclerView.Adapter<MonthAdapter.MonthHolder>() {
+class MonthAdapter : RecyclerView.Adapter<MonthAdapter.MonthHolder>() {
 
     override fun getItemCount(): Int {
         //todo change
-        return 2
+
+        return 10
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthHolder {
@@ -35,6 +35,7 @@ class MonthAdapter(ctxt: Context) : RecyclerView.Adapter<MonthAdapter.MonthHolde
 //        holder.binding.monthDayCl.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
 
     }
+
 
     class MonthHolder(v: View) : RecyclerView.ViewHolder(v) {
         var binding: MonthLayoutBinding = DataBindingUtil.bind(v)!!

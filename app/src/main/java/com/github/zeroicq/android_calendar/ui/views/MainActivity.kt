@@ -4,6 +4,9 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.LinearSnapHelper
+import android.support.v7.widget.PagerSnapHelper
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.github.zeroicq.android_calendar.R
@@ -20,10 +23,13 @@ class MainActivity : AppCompatActivity() {
         binding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
 
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.monthRecyclerView)
 
         binding.monthRecyclerView.apply {
             adapter = MonthAdapter(this.context)
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
         }
 
     }
@@ -32,6 +38,11 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        binding.unbind()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

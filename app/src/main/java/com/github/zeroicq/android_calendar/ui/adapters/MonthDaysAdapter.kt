@@ -29,6 +29,11 @@ class MonthDaysAdapter() : RecyclerView.Adapter<MonthDaysAdapter.MonthDaysHolder
 
     }
 
+    override fun onViewDetachedFromWindow(holder: MonthDaysHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.binding.unbind()
+    }
+
     class MonthDaysHolder(v: View) : RecyclerView.ViewHolder(v) {
         var binding: MonthDayLayoutBinding = DataBindingUtil.bind(v)!!
 
