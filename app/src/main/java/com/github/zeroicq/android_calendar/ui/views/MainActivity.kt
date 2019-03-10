@@ -1,16 +1,10 @@
 package com.github.zeroicq.android_calendar.ui.views
 
-import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.AttributeSet
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
 import com.github.zeroicq.android_calendar.R
 import com.github.zeroicq.android_calendar.databinding.ActivityMainBinding
 import com.github.zeroicq.android_calendar.ui.adapters.MonthDaysAdapter

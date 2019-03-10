@@ -2,7 +2,9 @@ package com.github.zeroicq.android_calendar.ui.adapters
 
 import android.databinding.DataBindingUtil
 import android.graphics.Color
+import android.support.constraint.Constraints
 import android.support.v7.widget.RecyclerView
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,13 +26,16 @@ class MonthDaysAdapter() : RecyclerView.Adapter<MonthDaysAdapter.MonthDaysHolder
     override fun onBindViewHolder(holder: MonthDaysHolder, pos: Int) {
 //        Movie movie = Movie.ITEMS[position];
 //        holder.binding.setMovie(movie);
-        holder.binding?.monthDayTextView?.text = pos.toString()
-        holder.binding?.monthDayCl?.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
+        if (pos < 7) {
+            holder.binding.monthDayCl.layoutParams.height =  Constraints.LayoutParams.WRAP_CONTENT
+        }
+        holder.binding.monthDayTextView.text = pos.toString()
+//        holder.binding.monthDayCl.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
 
     }
 
     class MonthDaysHolder(v: View) : RecyclerView.ViewHolder(v) {
-        var binding: MonthDayLayoutBinding? = DataBindingUtil.bind(v)
+        var binding: MonthDayLayoutBinding = DataBindingUtil.bind(v)!!
 
     }
 }
