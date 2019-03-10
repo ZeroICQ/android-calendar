@@ -2,5 +2,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="month_day_side_margin">0dp</dimen>
     <dimen name="month_day_top_margin">8dp</dimen>
-    <dimen name="default_font_size">8sp</dimen>
+    <dimen name="default_font_size">16sp</dimen>
+    <dimen name="action_bar_size">56dp</dimen>
 </resources>

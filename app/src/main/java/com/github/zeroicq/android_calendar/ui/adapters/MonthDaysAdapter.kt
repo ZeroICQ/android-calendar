@@ -1,6 +1,7 @@
 package com.github.zeroicq.android_calendar.ui.adapters
 
 import android.databinding.DataBindingUtil
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class MonthDaysAdapter() : RecyclerView.Adapter<MonthDaysAdapter.MonthDaysHolder
 //        Movie movie = Movie.ITEMS[position];
 //        holder.binding.setMovie(movie);
         holder.binding?.monthDayTextView?.text = pos.toString()
+        holder.binding?.monthDayCl?.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
 
     }
 
