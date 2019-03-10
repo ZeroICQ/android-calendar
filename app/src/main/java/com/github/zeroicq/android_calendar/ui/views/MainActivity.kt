@@ -3,12 +3,12 @@ package com.github.zeroicq.android_calendar.ui.views
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.github.zeroicq.android_calendar.R
 import com.github.zeroicq.android_calendar.databinding.ActivityMainBinding
-import com.github.zeroicq.android_calendar.ui.adapters.MonthDaysAdapter
-import com.github.zeroicq.android_calendar.ui.custom.SpanGridLayoutManager
+import com.github.zeroicq.android_calendar.ui.adapters.MonthAdapter
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,17 +20,10 @@ class MainActivity : AppCompatActivity() {
         binding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
 
-//        val days =  ArrayList<String>()
-//        for (i in 1..31) {
-//            days.add(i.toString())
-//        }
-
-        val viewManager = SpanGridLayoutManager(this, 7)
 
         binding.monthRecyclerView.apply {
-            adapter = MonthDaysAdapter()
-            layoutManager = viewManager
-            setHasFixedSize(true)
+            adapter = MonthAdapter(this.context)
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
         }
 
     }
