@@ -1,25 +1,24 @@
-package com.github.zeroicq.android_calendar
+package com.github.zeroicq.android_calendar.view
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import com.github.zeroicq.android_calendar.R
+import com.github.zeroicq.android_calendar.data.CalendarEvent
+import com.github.zeroicq.android_calendar.databinding.ActivityMainBinding
 
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        binding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
+        setSupportActionBar(binding.toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
