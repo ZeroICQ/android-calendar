@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import com.github.zeroicq.android_calendar.R
 import com.github.zeroicq.android_calendar.databinding.ActivityMainBinding
 import com.github.zeroicq.android_calendar.ui.adapters.MonthDaysAdapter
+import com.github.zeroicq.android_calendar.ui.custom.SpanGridLayoutManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,36 +26,12 @@ class MainActivity : AppCompatActivity() {
         binding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
 
-        val days =  ArrayList<String>()
-        for (i in 1..31) {
-            days.add(i.toString())
-        }
-        val viewManager = object : GridLayoutManager(this@MainActivity, 7) {
-            override fun canScrollVertically() = false
+//        val days =  ArrayList<String>()
+//        for (i in 1..31) {
+//            days.add(i.toString())
+//        }
 
-            override fun canScrollHorizontally() = false
-
-            private fun spanLayoutSize(layoutParams: RecyclerView.LayoutParams): RecyclerView.LayoutParams {
-                if (orientation == HORIZONTAL) {
-                    layoutParams.width = Math.round(getHorizontalSpace()/Math.ceil((itemCount / spanCount).toDouble())).toInt()
-                }
-                else if(orientation == VERTICAL) {
-                    layoutParams.height = Math.round(getVerticalSpace()/Math.ceil((itemCount / spanCount).toDouble())).toInt()
-                }
-                return layoutParams
-            }
-
-            private fun getHorizontalSpace() = width - paddingRight - paddingLeft
-            private fun getVerticalSpace() = height - paddingBottom - paddingTop
-
-            override fun generateLayoutParams(c: Context?, attrs: AttributeSet?): RecyclerView.LayoutParams {
-                return spanLayoutSize(super.generateLayoutParams(c, attrs))
-            }
-
-            override fun generateLayoutParams(lp: ViewGroup.LayoutParams?): RecyclerView.LayoutParams {
-                return spanLayoutSize(super.generateLayoutParams(lp))
-            }
-        }
+        val viewManager = SpanGridLayoutManager(this, 7)
 
         binding.monthRecyclerView.apply {
             adapter = MonthDaysAdapter()
