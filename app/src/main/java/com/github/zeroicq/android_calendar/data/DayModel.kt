@@ -1,3 +1,6 @@
 package com.github.zeroicq.android_calendar.data
 
-class DayModel
+import android.icu.util.Calendar
+
+
+class DayModel(val date: Calendar, var message: String)

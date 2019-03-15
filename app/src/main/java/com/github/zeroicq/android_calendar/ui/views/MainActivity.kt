@@ -12,10 +12,12 @@ import android.view.MenuItem
 import com.github.zeroicq.android_calendar.R
 import com.github.zeroicq.android_calendar.databinding.ActivityMainBinding
 import com.github.zeroicq.android_calendar.ui.adapters.MonthAdapter
+import com.github.zeroicq.android_calendar.ui.viewmodel.MonthViewModel
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val vm = MonthViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +29,14 @@ class MainActivity : AppCompatActivity() {
         snapHelper.attachToRecyclerView(binding.monthRecyclerView)
 
         binding.monthRecyclerView.apply {
-            adapter = MonthAdapter(this.context)
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
+            adapter = MonthAdapter(vm)
+            layoutManager = object : LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false) {
+                override fun getInitialPrefetchItemCount(): Int {
+                    return 100
+                }
+            }
+//            setHasFixedSize(true)
+
         }
 
     }
