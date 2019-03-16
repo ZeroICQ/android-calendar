@@ -4,9 +4,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.PagerSnapHelper
-import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.github.zeroicq.android_calendar.R
@@ -17,7 +15,8 @@ import com.github.zeroicq.android_calendar.ui.viewmodel.MonthViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val vm = MonthViewModel()
+
+    private val viewModel = MonthViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +28,9 @@ class MainActivity : AppCompatActivity() {
         snapHelper.attachToRecyclerView(binding.monthRecyclerView)
 
         binding.monthRecyclerView.apply {
-            adapter = MonthAdapter(vm)
-            layoutManager = object : LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false) {
-                override fun getInitialPrefetchItemCount(): Int {
-                    return 100
-                }
-            }
-//            setHasFixedSize(true)
-
+            adapter = MonthAdapter(viewModel)
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

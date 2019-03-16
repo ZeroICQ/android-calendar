@@ -9,7 +9,7 @@ class MonthTestRepository {
 
     companion object {
         fun get(calendar: Calendar) : ArrayList<DayModel> {
-            val firstDay = calendar.getMinimum(Calendar.DAY_OF_MONTH)
+            val firstDay = calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
             val lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
 
             val days = ArrayList<DayModel>()
@@ -19,7 +19,6 @@ class MonthTestRepository {
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
                     i)
-
 
                 days.add(DayModel(dayDate, "tst $i"))
             }

@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.ViewGroup
 
-class SpanGridLayoutManager(ctxt: Context, spanCount: Int) : GridLayoutManager(ctxt, spanCount) {
+open class SpanGridLayoutManager(ctxt: Context, spanCount: Int) : GridLayoutManager(ctxt, spanCount) {
     override fun canScrollVertically() = false
 
     override fun canScrollHorizontally() = false
@@ -31,4 +31,6 @@ class SpanGridLayoutManager(ctxt: Context, spanCount: Int) : GridLayoutManager(c
     override fun generateLayoutParams(lp: ViewGroup.LayoutParams?): RecyclerView.LayoutParams {
         return spanLayoutSize(super.generateLayoutParams(lp))
     }
+
+
 }

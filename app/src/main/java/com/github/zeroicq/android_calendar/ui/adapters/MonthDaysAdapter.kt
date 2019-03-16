@@ -9,13 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.zeroicq.android_calendar.databinding.MonthDayLayoutBinding
 import com.github.zeroicq.android_calendar.ui.viewmodel.MonthViewModel
+import java.util.*
+import kotlin.random.Random
 
 class MonthDaysAdapter(var vm: MonthViewModel) : RecyclerView.Adapter<MonthDaysAdapter.MonthDaysHolder>() {
     //todo: rmk
-    val CELLS_NUMBER = 25 // 7 days * 6 weeks
+//    val CELLS_NUMBER = 25 // 7 days * 6 weeks
 
     override fun getItemCount(): Int {
-        return vm.days.size
+//        return viewModel.days.size
+        return 42
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthDaysHolder {
@@ -25,11 +28,12 @@ class MonthDaysAdapter(var vm: MonthViewModel) : RecyclerView.Adapter<MonthDaysA
     }
 
     override fun onBindViewHolder(holder: MonthDaysHolder, pos: Int) {
+        holder.binding.dayNumber = vm.days[pos].message
+//        holder.binding.monthDayCl.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
 //        Movie movie = Movie.ITEMS[position];
 //        holder.binding.setMovie(movie);
 //        holder.binding.monthDayTextView.text = pos.toString()
-        holder.binding.dayModel = vm.days.getOrNull(pos)
-        holder.binding.monthDayCl.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
+//        holder.binding.dayModel = viewModel.days.getOrNull(pos)
 
     }
 
