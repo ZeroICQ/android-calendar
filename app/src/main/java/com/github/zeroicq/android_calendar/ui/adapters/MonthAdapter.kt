@@ -11,10 +11,8 @@ import com.github.zeroicq.android_calendar.ui.viewmodel.MonthViewModel
 
 
 class MonthAdapter(var viewModel: MonthViewModel) : RecyclerView.Adapter<MonthAdapter.MonthHolder>() {
-    override fun getItemCount(): Int {
-        //todo change
-        return 1000
-    }
+
+    override fun getItemCount() = viewModel.months.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -31,6 +29,8 @@ class MonthAdapter(var viewModel: MonthViewModel) : RecyclerView.Adapter<MonthAd
     }
 
     override fun onBindViewHolder(holder: MonthHolder, pos: Int) {
+        //todo: hach?
+        viewModel.pos = pos
 //        holder.binding.dayNumber = Random(pos).nextInt().toString()
 //        holder.binding.monthDayCl.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
 

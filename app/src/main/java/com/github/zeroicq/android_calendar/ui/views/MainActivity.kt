@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel = MonthViewModel()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         binding.monthRecyclerView.apply {
             adapter = MonthAdapter(viewModel)
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            scrollToPosition(viewModel.pos)
         }
     }
 
