@@ -1,21 +1,31 @@
 package com.github.zeroicq.android_calendar.ui.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import android.databinding.BaseObservable
+import android.databinding.Bindable
 import android.icu.util.Calendar
 import android.icu.util.GregorianCalendar
+import com.android.databinding.library.baseAdapters.BR
 import com.github.zeroicq.android_calendar.data.DayModel
 import com.github.zeroicq.android_calendar.data.repository.MonthTestRepository
 import com.github.zeroicq.android_calendar.util.copyGregorian
 import kotlin.collections.ArrayList
 
-class MonthViewModel : ViewModel() {
+class MonthViewModel : BaseObservable() {
     private val MONTH_BUFFER_SIZE = 5
     private val DAYS_IN_MONTH_GRID_SIZE = 42
+
 
     var months = mutableListOf<ArrayList<DayModel>>()
     // current position in months list
     var pos: Int = MONTH_BUFFER_SIZE / 2
 
+    @get:Bindable
+    var toolbarTitle: String = "mm"
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.toolbarTitle)
+    }
 
     init {
         val now = GregorianCalendar.getInstance()

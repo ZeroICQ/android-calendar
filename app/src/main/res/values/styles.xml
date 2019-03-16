@@ -10,6 +10,12 @@
 
     <style name="AppTheme.Toolbar" parent="AppTheme">
         <item name="background">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <!--<item name="actionOverflowButtonStyle">@style/ActionButtonOverflowStyle</item>-->
+        <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar">

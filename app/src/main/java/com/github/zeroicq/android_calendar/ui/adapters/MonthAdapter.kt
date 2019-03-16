@@ -10,7 +10,7 @@ import com.github.zeroicq.android_calendar.ui.custom.SpanGridLayoutManager
 import com.github.zeroicq.android_calendar.ui.viewmodel.MonthViewModel
 
 
-class MonthAdapter(var viewModel: MonthViewModel) : RecyclerView.Adapter<MonthAdapter.MonthHolder>() {
+class MonthAdapter(val viewModel: MonthViewModel) : RecyclerView.Adapter<MonthAdapter.MonthHolder>() {
 
     override fun getItemCount() = viewModel.months.size
 
@@ -29,8 +29,9 @@ class MonthAdapter(var viewModel: MonthViewModel) : RecyclerView.Adapter<MonthAd
     }
 
     override fun onBindViewHolder(holder: MonthHolder, pos: Int) {
-        //todo: hach?
-        viewModel.pos = pos
+        //todo: hack! rml
+//        viewModel.pos = pos
+//        viewModel.toolbarTitle = pos.toString()
 //        holder.binding.dayNumber = Random(pos).nextInt().toString()
 //        holder.binding.monthDayCl.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
 

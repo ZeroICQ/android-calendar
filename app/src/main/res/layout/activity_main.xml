@@ -5,6 +5,9 @@
     tools:context=".ui.views.MainActivity">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.github.zeroicq.android_calendar.ui.viewmodel.MonthViewModel" />
     </data>
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -41,7 +44,8 @@
                         <android.support.v7.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ss"/>
+                            android:theme="@style/AppTheme.Toolbar"
+                            android:text="@{viewModel.toolbarTitle}"/>
 
                     </android.support.v7.widget.Toolbar>
 

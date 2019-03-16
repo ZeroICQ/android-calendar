@@ -6,6 +6,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.github.zeroicq.android_calendar.R
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.viewModel = viewModel
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.apply {
@@ -31,12 +34,23 @@ class MainActivity : AppCompatActivity() {
             setHomeAsUpIndicator(R.drawable.ic_menu)
         }
 
+
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.monthRecyclerView)
 
         binding.monthRecyclerView.apply {
             adapter = MonthAdapter(viewModel)
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false).apply { addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        viewModel.pos = findLastCompletelyVisibleItemPosition()
+                        viewModel.toolbarTitle = viewModel.pos.toString()
+                    }
+                }
+
+            }) }
             scrollToPosition(viewModel.pos)
         }
 
@@ -45,6 +59,9 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.closeDrawers()
             true
         }
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
