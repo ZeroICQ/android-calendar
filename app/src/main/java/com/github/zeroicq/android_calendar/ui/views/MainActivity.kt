@@ -2,6 +2,7 @@ package com.github.zeroicq.android_calendar.ui.views
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v4.view.GravityCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
@@ -24,6 +25,11 @@ class MainActivity : AppCompatActivity() {
 
         binding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_menu)
+        }
 
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.monthRecyclerView)
@@ -32,6 +38,12 @@ class MainActivity : AppCompatActivity() {
             adapter = MonthAdapter(viewModel)
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             scrollToPosition(viewModel.pos)
+        }
+
+        binding.navView.setNavigationItemSelectedListener { menuItem ->
+            menuItem.isChecked
+            binding.drawerLayout.closeDrawers()
+            true
         }
     }
 
@@ -52,6 +64,10 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            android.R.id.home -> {
+                binding.drawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
