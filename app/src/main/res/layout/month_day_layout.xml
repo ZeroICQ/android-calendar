@@ -19,11 +19,9 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/month_day_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginEnd="@dimen/month_day_side_margin"
-            android:layout_marginStart="@dimen/month_day_side_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
             android:layout_marginTop="@dimen/month_day_top_margin"
             android:textSize="@dimen/default_font_size"
             android:text="@{dayNumber}"

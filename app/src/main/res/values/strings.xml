@@ -5,4 +5,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="MondayAbbr">ПН</string>
+    <string name="TuesdayAbbr">ВТ</string>
+    <string name="WednesdayAbbr">СР</string>
+    <string name="ThursdayAbbr">ЧТ</string>
+    <string name="FridayAbbr">ПТ</string>
+    <string name="SaturdayAbbr">СБ</string>
+    <string name="SundayAbbr">ВС</string>
 </resources>

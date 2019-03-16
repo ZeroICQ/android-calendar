@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">Календарь</string>
     <string name="action_settings">Настройки</string>
+    <string name="MondayAbbr">ПН</string>
+    <string name="WednesdayAbbr">СР</string>
+    <string name="ThursdayAbbr">ЧТ</string>
+    <string name="FridayAbbr">ПТ</string>
+    <string name="SaturdayAbbr">СБ</string>
 </resources>
