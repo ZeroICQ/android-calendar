@@ -1,12 +1,12 @@
 package com.github.zeroicq.android_calendar.ui.views
 
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
-import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.github.zeroicq.android_calendar.R
@@ -19,14 +19,17 @@ import com.github.zeroicq.android_calendar.ui.viewmodel.MonthViewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel = MonthViewModel()
+    private lateinit var viewModel: MonthViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModel = ViewModelProviders.of(this).get(MonthViewModel::class.java)
+
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -44,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false).apply {
                 addOnScrollListener(SnapChangeListener(snapHelper) {
                     viewModel.pos = it
-                    viewModel.toolbarTitle = it.toString()
+                    viewModel.toolbarTitle.value = it.toString()
                 })
             }
             scrollToPosition(viewModel.pos)

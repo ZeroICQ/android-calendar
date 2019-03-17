@@ -1,5 +1,6 @@
 package com.github.zeroicq.android_calendar.ui.viewmodel
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.BaseObservable
 import android.databinding.Bindable
@@ -11,7 +12,7 @@ import com.github.zeroicq.android_calendar.data.repository.MonthTestRepository
 import com.github.zeroicq.android_calendar.util.copyGregorian
 import kotlin.collections.ArrayList
 
-class MonthViewModel : BaseObservable() {
+class MonthViewModel : ViewModel() {
     private val MONTH_BUFFER_SIZE = 5
     private val DAYS_IN_MONTH_GRID_SIZE = 42
 
@@ -21,11 +22,11 @@ class MonthViewModel : BaseObservable() {
     var pos: Int = MONTH_BUFFER_SIZE / 2
     var lastBindedMonthHolderPost = pos
 
-    @get:Bindable
-    var toolbarTitle: String = "mm"
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.toolbarTitle)
+    val toolbarTitle: MutableLiveData<String> by lazy {
+        MutableLiveData<String>().apply {
+            value = "start"
+        }
+
     }
 
     init {
