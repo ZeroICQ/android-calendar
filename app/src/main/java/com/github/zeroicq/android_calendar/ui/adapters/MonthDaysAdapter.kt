@@ -24,7 +24,7 @@ class MonthDaysAdapter(var viewModel: MonthViewModel) : RecyclerView.Adapter<Mon
     }
 
     override fun onBindViewHolder(holder: MonthDaysHolder, pos: Int) {
-        holder.binding.dayNumber = viewModel.months[viewModel.pos][pos].dayNumber.toString()
+        holder.binding.dayNumber = viewModel.months[viewModel.lastBindedMonthHolderPost][pos].dayNumber.toString()
 //        holder.binding.monthDayCl.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
 //        Movie movie = Movie.ITEMS[position];
 //        holder.binding.setMovie(movie);

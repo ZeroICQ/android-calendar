@@ -12,6 +12,7 @@ import android.view.MenuItem
 import com.github.zeroicq.android_calendar.R
 import com.github.zeroicq.android_calendar.databinding.ActivityMainBinding
 import com.github.zeroicq.android_calendar.ui.adapters.MonthAdapter
+import com.github.zeroicq.android_calendar.ui.listener.SnapChangeListener
 import com.github.zeroicq.android_calendar.ui.viewmodel.MonthViewModel
 
 
@@ -40,17 +41,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.monthRecyclerView.apply {
             adapter = MonthAdapter(viewModel)
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false).apply { addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                        viewModel.pos = findLastCompletelyVisibleItemPosition()
-                        viewModel.toolbarTitle = viewModel.pos.toString()
-                    }
-                }
-
-            }) }
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false).apply {
+                addOnScrollListener(SnapChangeListener(snapHelper) {
+                    viewModel.pos = it
+                    viewModel.toolbarTitle = it.toString()
+                })
+            }
             scrollToPosition(viewModel.pos)
         }
 

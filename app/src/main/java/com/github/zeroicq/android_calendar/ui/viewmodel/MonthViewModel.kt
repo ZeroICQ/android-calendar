@@ -19,6 +19,7 @@ class MonthViewModel : BaseObservable() {
     var months = mutableListOf<ArrayList<DayModel>>()
     // current position in months list
     var pos: Int = MONTH_BUFFER_SIZE / 2
+    var lastBindedMonthHolderPost = pos
 
     @get:Bindable
     var toolbarTitle: String = "mm"

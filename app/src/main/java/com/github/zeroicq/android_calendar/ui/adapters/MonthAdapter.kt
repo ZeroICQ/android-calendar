@@ -30,7 +30,7 @@ class MonthAdapter(val viewModel: MonthViewModel) : RecyclerView.Adapter<MonthAd
 
     override fun onBindViewHolder(holder: MonthHolder, pos: Int) {
         //todo: hack! rml
-//        viewModel.pos = pos
+        viewModel.lastBindedMonthHolderPost = pos
 //        viewModel.toolbarTitle = pos.toString()
 //        holder.binding.dayNumber = Random(pos).nextInt().toString()
 //        holder.binding.monthDayCl.setBackgroundColor(Color.rgb(pos * 20 % 255, pos * 10 % 255, pos * 3 % 255))
