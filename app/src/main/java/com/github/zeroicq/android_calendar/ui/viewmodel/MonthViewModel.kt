@@ -2,14 +2,12 @@ package com.github.zeroicq.android_calendar.ui.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.databinding.BaseObservable
-import android.databinding.Bindable
 import android.icu.util.Calendar
 import android.icu.util.GregorianCalendar
-import com.android.databinding.library.baseAdapters.BR
 import com.github.zeroicq.android_calendar.data.DayModel
 import com.github.zeroicq.android_calendar.data.repository.MonthTestRepository
 import com.github.zeroicq.android_calendar.util.copyGregorian
+import java.text.SimpleDateFormat
 import kotlin.collections.ArrayList
 
 class MonthViewModel : ViewModel() {
@@ -20,11 +18,19 @@ class MonthViewModel : ViewModel() {
     var months = mutableListOf<ArrayList<DayModel>>()
     // current position in months list
     var pos: Int = MONTH_BUFFER_SIZE / 2
+    set(value) {
+        field = value
+        val f = android.icu.text.SimpleDateFormat("MMMM, YYYY")
+        //todo: remove hack
+        val monthName = f.format(months[value][10].date.time)
+        toolbarTitle.value = monthName
+    }
+
     var lastBindedMonthHolderPost = pos
 
     val toolbarTitle: MutableLiveData<String> by lazy {
         MutableLiveData<String>().apply {
-            value = "start"
+//            value = "start"
         }
 
     }

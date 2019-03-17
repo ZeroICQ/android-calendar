@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false).apply {
                 addOnScrollListener(SnapChangeListener(snapHelper) {
                     viewModel.pos = it
-                    viewModel.toolbarTitle.value = it.toString()
                 })
             }
             scrollToPosition(viewModel.pos)
